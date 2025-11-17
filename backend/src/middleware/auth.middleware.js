@@ -5,9 +5,8 @@ export const protectRoute = async(req, res, next) => {
         res.status(401).json({ message: "Unauthorized - you must be logges in" });
     }
     next();
-
-
 };
+
 export const requireAdmin = async(req, res, next)=> {
     try{
         const currentUser = await clerkClient.users.getUser(req.auth.userId);
@@ -18,11 +17,10 @@ export const requireAdmin = async(req, res, next)=> {
         next();
 
     } catch(error){
-
-
-
+        next(error);
     }
-    
+};
 
-
-}
+export const checkAdmin = async (req, res, next) => {
+    return res.status(200).json({ success: true, message: "YOU ARE AN ADMIN" });
+};
