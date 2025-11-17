@@ -3,7 +3,8 @@ import {Router} from 'express';
 const router = Router();
 
 router.get("/",(req,res)=>{
-    res.send("Admin route with GET method");
+    req.auth.userId
+    res.send("User route works")
 });
  
 
